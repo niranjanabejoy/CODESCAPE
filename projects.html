@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODESCAPE | Projects</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    color:#222;
+}
+
+.section{
+    padding:80px 8%;
+}
+
+/* ================= HEADER ================= */
+
+.section-subtitle{
+    color:#4da3ff;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    font-size:14px;
+}
+
+.section-title{
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.section-title span{
+    color:#4da3ff;
+}
+
+/* ================= FILTER TABS ================= */
+
+.filter-tabs{
+    display:flex;
+    gap:15px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+}
+
+.filter-btn{
+    padding:8px 18px;
+    border-radius:20px;
+    border:1px solid #ddd;
+    background:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+    background:#4da3ff;
+    color:#fff;
+    border-color:#4da3ff;
+}
+
+/* ================= SLIDER ================= */
+
+.slider-wrapper{
+    position:relative;
+}
+
+.slider{
+    display:flex;
+    gap:30px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    padding-bottom:20px;
+}
+
+.slider::-webkit-scrollbar{display:none;}
+
+/* ================= CARD ================= */
+
+.project-card{
+    min-width:280px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px 20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    text-align:center;
+    transition:0.4s ease;
+    flex-shrink:0;
+    position:relative;
+    overflow:hidden;
+}
+
+.project-card.hide{
+    display:none;
+}
+
+.project-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 50px rgba(0,0,0,0.08);
+}
+
+.project-logo{
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    margin-bottom:20px;
+}
+
+.project-name{
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.project-category{
+    font-size:14px;
+    color:#777;
+}
+
+/* ================= OVERLAY ================= */
+
+.view-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    transition:0.4s ease;
+    padding:20px;
+    text-align:center;
+}
+
+.project-card:hover .view-overlay{
+    opacity:1;
+}
+
+.tech-badges{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:15px;
+}
+
+.tech-badges span{
+    background:#4da3ff;
+    color:#fff;
+    padding:4px 10px;
+    border-radius:12px;
+    font-size:12px;
+}
+
+.view-btn{
+    background:linear-gradient(135deg,#4da3ff,#007bff);
+    color:#fff;
+    padding:10px 20px;
+    border-radius:25px;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.view-btn:hover{
+    background:linear-gradient(135deg,#007bff,#0056d2);
+}
+
+/* ================= ARROWS ================= */
+
+.arrow{
+    position:absolute;
+    top:-60px;
+    right:0;
+    display:flex;
+    gap:10px;
+}
+
+.arrow button{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:none;
+    background:#e0e5ec;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.arrow button:hover{
+    background:#4da3ff;
+    color:white;
+}
+
+/* ================= TRUST STATS ================= */
+
+.trust-section{
+    margin-top:60px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+    text-align:center;
+}
+
+.trust-box{
+    flex:1;
+    min-width:180px;
+}
+
+.trust-box h3{
+    font-size:32px;
+    color:#4da3ff;
+    margin-bottom:8px;
+}
+
+.trust-box p{
+    font-size:14px;
+    color:#555;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .section-title{font-size:30px;}
+
+    .project-card{min-width:240px;}
+
+    .trust-section{
+        justify-content:center;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<section class="section">
+
+<p class="section-subtitle">OUR CLIENTS</p>
+<h2 class="section-title">See Our Recent <span>Projects</span></h2>
+
+<!-- FILTER TABS -->
+<div class="filter-tabs">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="Healthcare">Healthcare</button>
+    <button class="filter-btn" data-filter="Tech">Tech</button>
+    <button class="filter-btn" data-filter="Education">Education</button>
+    <button class="filter-btn" data-filter="FMCG">FMCG</button>
+</div>
+
+<div class="slider-wrapper">
+
+<div class="arrow">
+    <button id="prev">&#10094;</button>
+    <button id="next">&#10095;</button>
+</div>
+
+<div class="slider" id="projectSlider">
+
+    <!-- CARD 1 -->
+    <div class="project-card" data-category="Healthcare">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">Listermedica</h3>
+        <p class="project-category">Healthcare</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="project-card" data-category="Tech">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">Pentagon Technologies</h3>
+        <p class="project-category">Tech</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="project-card" data-category="Education">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">Orion Academy</h3>
+        <p class="project-category">Education</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="project-card" data-category="FMCG">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">Hai Food Products</h3>
+        <p class="project-category">FMCG</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="project-card" data-category="Healthcare">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">MediCore Labs</h3>
+        <p class="project-category">Healthcare</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="project-card" data-category="Tech">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">NovaSoft Solutions</h3>
+        <p class="project-category">Tech</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="project-card" data-category="Education">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">EduSpark Platform</h3>
+        <p class="project-category">Education</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 8 -->
+    <div class="project-card" data-category="FMCG">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">FreshMart Retail</h3>
+        <p class="project-category">FMCG</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 9 -->
+    <div class="project-card" data-category="Tech">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">CloudSync Systems</h3>
+        <p class="project-category">Tech</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+    <!-- CARD 10 -->
+    <div class="project-card" data-category="Healthcare">
+        <img src="https://via.placeholder.com/100" class="project-logo">
+        <h3 class="project-name">HealthBridge</h3>
+        <p class="project-category">Healthcare</p>
+        <div class="view-overlay">
+            <a href="#" class="view-btn">View Project Details →</a>
+        </div>
+    </div>
+
+</div>
+
+    
+</div>
+
+</div>
+</div>
+
+<!-- TRUST SECTION -->
+<div class="trust-section">
+    <div class="trust-box">
+        <h3>50+</h3>
+        <p>Projects Completed</p>
+    </div>
+    <div class="trust-box">
+        <h3>30+</h3>
+        <p>Happy Clients</p>
+    </div>
+    <div class="trust-box">
+        <h3>5+</h3>
+        <p>Industries Served</p>
+    </div>
+    <div class="trust-box">
+        <h3>98%</h3>
+        <p>Client Retention</p>
+    </div>
+</div>
+
+</section>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const slider=document.getElementById('projectSlider');
+const nextBtn=document.getElementById('next');
+const prevBtn=document.getElementById('prev');
+const filterBtns=document.querySelectorAll('.filter-btn');
+const cards=document.querySelectorAll('.project-card');
+
+let autoSlide;
+const slideAmount=320;
+const slideDelay=3000;
+
+/* Slider */
+nextBtn.onclick=()=>slider.scrollBy({left:slideAmount,behavior:'smooth'});
+prevBtn.onclick=()=>slider.scrollBy({left:-slideAmount,behavior:'smooth'});
+
+function startAuto(){
+autoSlide=setInterval(()=>{
+if(slider.scrollLeft+slider.clientWidth>=slider.scrollWidth-5){
+slider.scrollTo({left:0,behavior:'smooth'});
+}else{
+slider.scrollBy({left:slideAmount,behavior:'smooth'});
+}
+},slideDelay);
+}
+function stopAuto(){clearInterval(autoSlide);}
+startAuto();
+slider.addEventListener("mouseenter",stopAuto);
+slider.addEventListener("mouseleave",startAuto);
+
+/* Filter */
+filterBtns.forEach(btn=>{
+btn.addEventListener("click",()=>{
+filterBtns.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+let filter=btn.dataset.filter;
+cards.forEach(card=>{
+if(filter==="all"||card.dataset.category===filter){
+card.classList.remove("hide");
+}else{
+card.classList.add("hide");
+}
+});
+});
+});
+
+});
+
+</script>
+
+</body>
+</html>

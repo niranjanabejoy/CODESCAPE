@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODESCAPE | Contact Us</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+.contact-icon i{
+    font-size:26px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    color:#222;
+}
+
+/* ===== SECTION ===== */
+
+.contact-section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:#777;
+    margin-bottom:60px;
+}
+
+/* ===== CONTACT GRID ===== */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+/* ===== CARD STYLE ===== */
+
+.contact-card{
+    background:#fff;
+    padding:40px 25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.05);
+    transition:0.4s ease;
+}
+
+.contact-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 60px rgba(0,0,0,0.08);
+}
+
+.contact-icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 20px auto;
+    font-size:28px;
+    color:#fff;
+}
+
+/* Different icon backgrounds */
+
+.phone{ background:#4da3ff; }
+.email{ background:#b84dff; }
+.linkedin{ background:#0077b5; }
+.whatsapp{ background:#25d366; }
+.location{ background:#ff5e7d; }
+.instagram{ background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7); }
+
+.contact-text{
+    font-size:16px;
+    font-weight:500;
+    color:#333;
+}
+
+/* ===== CONTACT FORM ===== */
+
+.contact-form{
+    margin-top:80px;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+    background:#fff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.05);
+}
+
+.contact-form h3{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:24px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+input, textarea{
+    width:100%;
+    padding:12px 15px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    outline:none;
+}
+
+textarea{
+    resize:none;
+    height:120px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(135deg,#4da3ff,#007bff);
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:linear-gradient(135deg,#007bff,#0056d2);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+    .section-title{font-size:28px;}
+}
+
+</style>
+</head>
+<body>
+
+<section class="contact-section">
+
+<h2 class="section-title">Get In Touch</h2>
+<p class="section-subtitle">We’d love to hear from you. Connect with us anytime.</p>
+
+<div class="contact-grid">
+
+    <div class="contact-card">
+        <div class="contact-icon phone">
+            <i class="fas fa-phone"></i>
+        </div>
+        <div class="contact-text">+91 8921258262</div>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-icon email">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <div class="contact-text">contact@thecodescape.in</div>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-icon linkedin">
+            <i class="fab fa-linkedin-in"></i>
+        </div>
+        <div class="contact-text">@codescape</div>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-icon whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="contact-text">+91 8921258262</div>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-icon location">
+            <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="contact-text">Muvattupuzha, Ernakulam Kerala</div>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-icon instagram">
+            <i class="fab fa-instagram"></i>
+        </div>
+        <div class="contact-text">@thecodescape</div>
+    </div>
+
+</div>
+
+
+<!-- CONTACT FORM -->
+
+<div class="contact-form">
+    <h3>Send Us a Message</h3>
+
+    <div class="form-group">
+        <input type="text" placeholder="Your Name">
+    </div>
+
+    <div class="form-group">
+        <input type="email" placeholder="Your Email">
+    </div>
+
+    <div class="form-group">
+        <textarea placeholder="Your Message"></textarea>
+    </div>
+
+    <button>Send Message</button>
+</div>
+
+</section>
+
+</body>
+</html>

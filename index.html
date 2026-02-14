@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODESCAPE | Where Creativity Meets Technology</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:"Inter",sans-serif;
+  background:#ffffff;
+  color:#1e293b;
+  line-height:1.6;
+  scroll-behavior:smooth;
+}
+
+/* ================= INTRO SCREEN ================= */
+.intro-screen{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100vh;
+  background:linear-gradient(135deg,#2563eb,#0ea5e9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:5000;
+  transition:opacity 0.8s ease, visibility 0.8s ease;
+  overflow:hidden;
+}
+
+.bubble-ripple{
+  position:absolute;
+  width:200%;height:200%;
+  top:-50%;left:-50%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.7) 2%, transparent 3%) center/200px 200px,
+    radial-gradient(circle, rgba(255,255,255,0.5) 2%, transparent 3%) center/350px 350px,
+    radial-gradient(circle, rgba(255,255,255,0.3) 2%, transparent 3%) center/500px 500px,
+    radial-gradient(circle, rgba(255,255,255,0.15) 2%, transparent 3%) center/650px 650px;
+  animation:rippleRotate 20s linear infinite;
+}
+
+@keyframes rippleRotate{
+  0%{ transform:rotate(0deg) scale(1); }
+  50%{ transform:rotate(180deg) scale(1.05); }
+  100%{ transform:rotate(360deg) scale(1); }
+}
+
+.intro-screen h1{
+  color:white;
+  font-size:3rem;
+  margin-bottom:30px;
+  position:relative;
+  z-index:1;
+}
+
+.intro-btn{
+  padding:15px 40px;
+  border:none;
+  border-radius:40px;
+  background:white;
+  color:#2563eb;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+  position:relative;
+  z-index:1;
+}
+
+.intro-btn:hover{ transform:scale(1.08); }
+
+.intro-hidden{
+  opacity:0;
+  visibility:hidden;
+}
+
+/* ================= NAVBAR ================= */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 60px;
+  z-index:1000;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:700;
+  font-size:1.2rem;
+}
+
+.logo img{ width:35px;height:35px; }
+
+.nav-links{ display:flex;gap:30px; }
+
+nav a{
+  text-decoration:none;
+  color:#334155;
+  font-weight:500;
+  transition:0.3s;
+}
+
+nav a:hover{ color:#2563eb; }
+
+/* ================= HERO ================= */
+.hero-section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:160px 80px 80px;
+  background:linear-gradient(135deg,#f8fafc,#e2e8f0);
+}
+
+.hero-content{ max-width:600px; }
+
+.hero-content h1{
+  font-size:3.2rem;
+  font-weight:800;
+  line-height:1.2;
+}
+
+.hero-content span{
+  background:linear-gradient(90deg,#2563eb,#0ea5e9);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-content p{
+  margin:25px 0 40px;
+  font-size:1.1rem;
+  color:#475569;
+}
+
+.hero-buttons{ display:flex;gap:20px; }
+
+.primary-btn{
+  padding:16px 40px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:40px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(37,99,235,0.3);
+  transition:0.3s;
+}
+
+.primary-btn:hover{
+  transform:translateY(-4px);
+  background:#1d4ed8;
+}
+
+.secondary-btn{
+  padding:16px 40px;
+  background:white;
+  color:#2563eb;
+  border:2px solid #2563eb;
+  border-radius:40px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.secondary-btn:hover{
+  background:#2563eb;
+  color:white;
+}
+
+.hero-visual{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.glow-orb{
+  width:420px;height:420px;
+  background:radial-gradient(circle,#2563eb,#0ea5e9,#3b82f6);
+  border-radius:50%;
+  filter:blur(60px);
+  animation:floatOrb 6s ease-in-out infinite;
+}
+
+@keyframes floatOrb{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-25px);}
+  100%{transform:translateY(0);}
+}
+
+/* ================= WIDGETS ================= */
+.widgets{
+  max-width:1200px;
+  margin:100px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  padding:0 20px;
+}
+
+.widget-card{
+  background:white;
+  padding:35px;
+  border-radius:18px;
+  text-align:center;
+  transition:0.35s;
+  cursor:pointer;
+  border:1px solid #e2e8f0;
+  box-shadow:0 4px 20px rgba(0,0,0,0.03);
+}
+
+.widget-card:hover{
+  transform:translateY(-8px);
+  border:1px solid #2563eb;
+  box-shadow:0 10px 30px rgba(37,99,235,0.15);
+}
+
+/* ================= SECTIONS ================= */
+section{
+  max-width:1100px;
+  margin:120px auto;
+  padding:60px;
+  background:#f8fafc;
+  border-radius:20px;
+}
+
+section h2{
+  margin-bottom:20px;
+  font-size:1.9rem;
+}
+
+/* ================= CONTACT ================= */
+form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+input,textarea{
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #e2e8f0;
+}
+
+.submit-btn{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:14px;
+  border-radius:30px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:30px;
+  background:#f1f5f9;
+  margin-top:60px;
+}
+
+/* ================= CHATBOT ================= */
+.chatbot-container{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  z-index:4000;
+}
+
+.chatbot-button{
+  width:65px;
+  height:65px;
+  background:linear-gradient(135deg,#2563eb,#0ea5e9);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(37,99,235,0.4);
+  transition:0.3s;
+}
+
+.chatbot-button:hover{ transform:scale(1.1); }
+
+.chatbot-window{
+  width:320px;
+  height:420px;
+  background:white;
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  position:absolute;
+  bottom:80px;
+  right:0;
+}
+
+.chatbot-header{
+  background:linear-gradient(135deg,#2563eb,#0ea5e9);
+  color:white;
+  padding:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:600;
+}
+
+.chatbot-header button{
+  background:none;
+  border:none;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.chatbot-messages{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+  font-size:0.9rem;
+  display:flex;
+  flex-direction:column;
+}
+
+.bot-message{
+  background:#f1f5f9;
+  padding:10px 14px;
+  border-radius:12px;
+  margin-bottom:10px;
+  max-width:85%;
+}
+
+.user-message{
+  background:#2563eb;
+  color:white;
+  padding:10px 14px;
+  border-radius:12px;
+  margin-bottom:10px;
+  align-self:flex-end;
+  max-width:85%;
+}
+
+.chatbot-input{
+  display:flex;
+  border-top:1px solid #e2e8f0;
+}
+
+.chatbot-input input{
+  flex:1;
+  border:none;
+  padding:12px;
+  outline:none;
+}
+
+.chatbot-input button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:0 16px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro-screen" id="intro">
+  <div class="bubble-ripple"></div>
+  <h1>Let’s Explore CODESCAPE</h1>
+  <button class="intro-btn" onclick="enterSite()">Explore</button>
+</div>
+
+<nav>
+  <div class="logo">
+    <img src="icon.png" alt="Logo">
+    CODESCAPE
+  </div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="services.html">Services</a>
+    <a href="#about">About</a>
+    <a href="contacts.html">Contact</a>
+  </div>
+</nav>
+
+<header id="home" class="hero-section">
+  <div class="hero-content">
+    <h1>WHERE <span>CREATIVITY MEETS</span><br>TECHNOLOGY</h1>
+    <p>CODESCAPE builds scalable SaaS systems, enterprise platforms,
+      and high-performance web experiences designed for long-term growth.</p>
+    <div class="hero-buttons">
+      <a href="services.html"><button class="primary-btn">Explore Services</button></a>
+      <a href="contacts.html"><button class="secondary-btn">Get in Touch</button></a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="glow-orb"></div>
+  </div>
+</header>
+
+<div class="widgets">
+  <a href="projects.html" style="text-decoration:none; color:inherit;">
+  <div class="widget-card">Projects</div>
+</a>
+
+   <a href="blog.html" style="text-decoration:none; color:inherit;">
+  <div class="widget-card">Blog</div>
+</a>
+    <a href="career.html" style="text-decoration:none; color:inherit;">
+  <div class="widget-card">Careers</div>
+</a>
+ 
+ 
+</div>
+
+<section id="services">
+  <h2>Services Overview</h2>
+  <p>We deliver web platforms, SaaS systems and enterprise applications engineered for performance and scalability.</p>
+</section>
+
+<section id="about">
+  <h2>About CODESCAPE</h2>
+  <p><strong>Mission:</strong>To deliver value through innovation, technological excellence and quality, ensuring every 
+CODESCAPE solution is reliable, scalable, and impactful.</p>
+  <p><strong>Vision:</strong> To be a leading and trusted technology partner, recognized for innovation, quality, and 
+an enduring passion for excellence.</p>
+</section>
+
+
+<footer>
+© 2026 CODESCAPE | Where Creativity Meets Technology
+</footer>
+
+<!-- CHATBOT -->
+<div class="chatbot-container">
+  <div class="chatbot-button" onclick="toggleChat()">💬</div>
+
+  <div class="chatbot-window" id="chatbot">
+    <div class="chatbot-header">
+      <span>CODESCAPE Assistant</span>
+      <button onclick="toggleChat()">✕</button>
+    </div>
+
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="bot-message">
+        Hello 👋 Welcome to CODESCAPE! How can I help you today?
+      </div>
+    </div>
+
+    <div class="chatbot-input">
+      <input type="text" id="chatInput" placeholder="Type a message...">
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function enterSite(){
+  document.getElementById("intro").classList.add("intro-hidden");
+}
+
+function toggleChat(){
+  const chat = document.getElementById("chatbot");
+  chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+function sendMessage(){
+  const input = document.getElementById("chatInput");
+  const messages = document.getElementById("chatMessages");
+  const text = input.value.trim();
+  if(text === "") return;
+
+  const userMsg = document.createElement("div");
+  userMsg.className = "user-message";
+  userMsg.innerText = text;
+  messages.appendChild(userMsg);
+
+  input.value = "";
+
+  setTimeout(()=>{
+    const botMsg = document.createElement("div");
+    botMsg.className = "bot-message";
+
+    if(text.toLowerCase().includes("service")){
+      botMsg.innerText = "We provide SaaS platforms, enterprise systems and scalable web applications.";
+    }
+    else if(text.toLowerCase().includes("contact")){
+      botMsg.innerText = "You can reach us via the contact form below or email us at contact@codescape.com.";
+    }
+    else{
+      botMsg.innerText = "Thanks for your message! Our team will assist you shortly.";
+    }
+
+    messages.appendChild(botMsg);
+    messages.scrollTop = messages.scrollHeight;
+  },600);
+}
+</script>
+
+</body>
+</html>
